@@ -3,7 +3,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,17 +21,21 @@ import com.google.firebase.auth.FirebaseAuth;
  */
 public class LogInFragment extends Fragment {
     private View objectSignInFragment;
+    private  EditText ettext4;
     private Button logInBtn;
     private EditText mailEt,passEt;
     private FirebaseAuth mAuth;
     private TextView logInToSignUpTxt;
-
+    private TextView etForgotPassword;
     private void attachComponents(){
         logInBtn=objectSignInFragment.findViewById(R.id.btnLogIn);
-        mailEt=objectSignInFragment.findViewById(R.id.etEmail);
+        mailEt=objectSignInFragment.findViewById(R.id.etEmail1);
+        passEt=objectSignInFragment.findViewById(R.id.etPassword);
         passEt=objectSignInFragment.findViewById(R.id.etPassword);
         mAuth=FirebaseAuth.getInstance();
-        logInToSignUpTxt=objectSignInFragment.findViewById(R.id.etText3);
+        etForgotPassword=objectSignInFragment.findViewById(R.id.logInToSignUpTxt);
+        logInToSignUpTxt=objectSignInFragment.findViewById(R.id.etForgetPassword);
+        ettext4=getView().findViewById(R.id.ettext4);
         logInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

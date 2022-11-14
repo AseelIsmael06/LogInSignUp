@@ -28,16 +28,16 @@ public class SignUpFragment extends Fragment {
     private EditText mailEt,passEt,confirmPassEt;
     private FirebaseAuth mAuth;
     private TextView signUpToLogInTxt;
-
-
     private void attachComponents(){
         try{
             signUpBtn=objectSignUpFragment.findViewById(R.id.btnSignUp);
-            mailEt=objectSignUpFragment.findViewById(R.id.etEmail);
+            mailEt=objectSignUpFragment.findViewById(R.id.etEmail1);
             passEt=objectSignUpFragment.findViewById(R.id.etPassword);
             confirmPassEt=objectSignUpFragment.findViewById(R.id.etConfirmPassword);
-            mAuth=FirebaseAuth.getInstance();
             signUpToLogInTxt=objectSignUpFragment.findViewById(R.id.etSignToLogIn);
+
+            mAuth=FirebaseAuth.getInstance();
+
             signUpBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -153,7 +153,7 @@ public class SignUpFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         signUpBtn=getView().findViewById(R.id.btnSignUp);
-        mailEt=getView().findViewById(R.id.etEmail);
+        mailEt=getView().findViewById(R.id.etEmail1);
         passEt=getView().findViewById(R.id.etPassword);
         confirmPassEt=getView().findViewById(R.id.etConfirmPassword);
     }
