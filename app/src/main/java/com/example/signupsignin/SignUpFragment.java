@@ -28,13 +28,15 @@ public class SignUpFragment extends Fragment {
     private EditText mailEt,passEt,confirmPassEt;
     private FirebaseAuth mAuth;
     private TextView signUpToLogInTxt;
+
+
     private void attachComponents(){
         try{
             signUpBtn=objectSignUpFragment.findViewById(R.id.btnSignUp);
-            mailEt=objectSignUpFragment.findViewById(R.id.etEmail1);
-            passEt=objectSignUpFragment.findViewById(R.id.etPassword);
-            confirmPassEt=objectSignUpFragment.findViewById(R.id.etConfirmPassword);
-            signUpToLogInTxt=objectSignUpFragment.findViewById(R.id.etSignToLogIn);
+            mailEt=objectSignUpFragment.findViewById(R.id.etMailLogIn);
+            passEt=objectSignUpFragment.findViewById(R.id.etPassSignUp);
+            confirmPassEt=objectSignUpFragment.findViewById(R.id.etPassConfirmSignUp);
+            signUpToLogInTxt=objectSignUpFragment.findViewById(R.id.signUpToLogInTxt);
 
             mAuth=FirebaseAuth.getInstance();
 
@@ -153,9 +155,9 @@ public class SignUpFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         signUpBtn=getView().findViewById(R.id.btnSignUp);
-        mailEt=getView().findViewById(R.id.etEmail1);
-        passEt=getView().findViewById(R.id.etPassword);
-        confirmPassEt=getView().findViewById(R.id.etConfirmPassword);
+        mailEt=getView().findViewById(R.id.etMailLogIn);
+        passEt=getView().findViewById(R.id.etPassSignUp);
+        confirmPassEt=getView().findViewById(R.id.etPassConfirmSignUp);
     }
 
     @Override
@@ -163,7 +165,6 @@ public class SignUpFragment extends Fragment {
                              Bundle savedInstanceState) {
         objectSignUpFragment=inflater.inflate(R.layout.fragment_sign_up,container,false);
         attachComponents();
-
         return objectSignUpFragment;
     }
 }

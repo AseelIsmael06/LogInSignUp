@@ -5,12 +5,12 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.rpc.context.AttributeContext;
 
 public class FirebaseServices {
-    private static FirebaseServices instance;
+   private static FirebaseServices instance;
     private FirebaseAuth auth;
     private FirebaseFirestore fire;
     private FirebaseStorage storage;
-
-    public FirebaseServices() {
+    public FirebaseServices()
+    {
         this.auth = FirebaseAuth.getInstance();
         this.fire = FirebaseFirestore.getInstance();
         this.storage = FirebaseStorage.getInstance();

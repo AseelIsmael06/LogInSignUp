@@ -31,28 +31,29 @@
         android:layout_marginBottom="55dp"
         android:text="𝗧 𝗢     𝗟 𝗢 𝗢 𝗞  𝗙 𝗔 𝗡 𝗧 𝗔 𝗦 𝗧 𝗜 𝗖 "
         android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/etEmail1"
+        app:layout_constraintBottom_toTopOf="@+id/etMailLogIn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView6" />
 
     <EditText
-        android:id="@+id/etEmail1"
+        android:id="@+id/etMailLogIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="49dp"
         android:ems="10"
         android:hint="Email..."
         android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/etPassword"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/etPassLogIn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ettext4" />
 
     <EditText
-        android:id="@+id/etPassword"
+        android:id="@+id/etPassLogIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="2dp"
@@ -60,9 +61,10 @@
         android:ems="10"
         android:hint="Password..."
         android:inputType="textPassword"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/btnLogIn"
-        app:layout_constraintEnd_toEndOf="@+id/etEmail1"
-        app:layout_constraintTop_toBottomOf="@+id/etEmail1" />
+        app:layout_constraintEnd_toEndOf="@+id/etMailLogIn"
+        app:layout_constraintTop_toBottomOf="@+id/etMailLogIn" />
 
     <Button
         android:id="@+id/btnLogIn"
@@ -71,25 +73,25 @@
         android:layout_marginBottom="68dp"
         android:backgroundTint="#AE9292"
         android:text="LogIn"
-        app:layout_constraintBottom_toTopOf="@+id/logInToSignUpTxt"
+        app:layout_constraintBottom_toTopOf="@+id/txtSignUpLogIn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/etPassLogIn" />
 
     <TextView
-        android:id="@+id/logInToSignUpTxt"
+        android:id="@+id/txtSignUpLogIn"
         android:layout_width="361dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="13dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="14dp"
         android:text="If you dont have an account click here"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/etForgetPassword"
+        app:layout_constraintBottom_toTopOf="@+id/logInToRPTxt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnLogIn" />
 
     <TextView
-        android:id="@+id/etForgetPassword"
+        android:id="@+id/logInToRPTxt"
         android:layout_width="250dp"
         android:layout_height="0dp"
         android:layout_marginEnd="40dp"
@@ -97,8 +99,8 @@
         android:text="Forgot Password?"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/logInToSignUpTxt"
-        app:layout_constraintTop_toBottomOf="@+id/logInToSignUpTxt" />
+        app:layout_constraintEnd_toEndOf="@+id/txtSignUpLogIn"
+        app:layout_constraintTop_toBottomOf="@+id/txtSignUpLogIn" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,7 +14,6 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link ForgotPasswordFragment#newInstance} factory method to

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomePageFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="405dp"
+            android:layout_height="673dp"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="-72dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </ScrollView>
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="193dp"
+            android:layout_height="210dp"
+            android:background="#72F182E2"
+            android:backgroundTint="#5BF182E2"
+            android:src="@drawable/mascara1"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="76dp" />
+
+        <TextView
+            android:id="@+id/etName"
+            android:layout_width="173dp"
+            android:layout_height="67dp"
+            android:text=" Benefit Bad Gal Mascara                        Price:160"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="22dp"
+            tools:layout_editor_absoluteY="290dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="406dp"
+        android:layout_height="69dp"
+        android:text="             𝓗𝓸𝓶𝓮 𝓟𝓪𝓰𝓮 "
+        android:textColor="#DFEFA6F3"
+        android:textSize="35sp" />
+
+</FrameLayout>
