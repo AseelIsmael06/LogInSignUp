@@ -33,7 +33,7 @@ public class SignUpFragment extends Fragment {
     private void attachComponents(){
         try{
             signUpBtn=objectSignUpFragment.findViewById(R.id.btnSignUp);
-            mailEt=objectSignUpFragment.findViewById(R.id.etMailLogIn);
+            mailEt=objectSignUpFragment.findViewById(R.id.etMailSignUp);
             passEt=objectSignUpFragment.findViewById(R.id.etPassSignUp);
             confirmPassEt=objectSignUpFragment.findViewById(R.id.etPassConfirmSignUp);
             signUpToLogInTxt=objectSignUpFragment.findViewById(R.id.signUpToLogInTxt);
@@ -155,7 +155,7 @@ public class SignUpFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         signUpBtn=getView().findViewById(R.id.btnSignUp);
-        mailEt=getView().findViewById(R.id.etMailLogIn);
+        mailEt=getView().findViewById(R.id.etMailSignUp);
         passEt=getView().findViewById(R.id.etPassSignUp);
         confirmPassEt=getView().findViewById(R.id.etPassConfirmSignUp);
     }

@@ -22,7 +22,7 @@
         app:srcCompat="@drawable/brush4" />
 
     <EditText
-        android:id="@+id/etMailLogIn"
+        android:id="@+id/etMailSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="85dp"
@@ -46,8 +46,8 @@
         android:inputType="numberPassword"
         android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/etPassConfirmSignUp"
-        app:layout_constraintStart_toStartOf="@+id/etMailLogIn"
-        app:layout_constraintTop_toBottomOf="@+id/etMailLogIn" />
+        app:layout_constraintStart_toStartOf="@+id/etMailSignUp"
+        app:layout_constraintTop_toBottomOf="@+id/etMailSignUp" />
 
     <EditText
         android:id="@+id/etPassConfirmSignUp"
