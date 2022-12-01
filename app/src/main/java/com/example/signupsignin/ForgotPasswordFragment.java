@@ -22,15 +22,15 @@ import com.google.firebase.auth.FirebaseAuth;
 public class ForgotPasswordFragment extends Fragment {
 
     private View objectForgotPasswordFragment;
-    private Button resetPassBtn;
-    private EditText emailEt;
-    private TextView RPtoLoginTxt;
+    private Button btnreset;
+    private EditText etEmail2;
+    private TextView etBack;
     private FirebaseAuth mAuth;
 
     private void resetPassword(){
         try{
-            if(!emailEt.getText().toString().isEmpty())
-                mAuth.sendPasswordResetEmail(emailEt.getText().toString())
+            if(!etEmail2.getText().toString().isEmpty())
+                mAuth.sendPasswordResetEmail(etEmail2.getText().toString())
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
@@ -54,19 +54,19 @@ public class ForgotPasswordFragment extends Fragment {
     }
 
     private void attachComponents(){
-        resetPassBtn=objectForgotPasswordFragment.findViewById(R.id.btnreset);
-        emailEt=objectForgotPasswordFragment.findViewById(R.id.etEmail2);
-        RPtoLoginTxt=objectForgotPasswordFragment.findViewById(R.id.etBack);
+        btnreset=objectForgotPasswordFragment.findViewById(R.id.btnreset);
+        etEmail2=objectForgotPasswordFragment.findViewById(R.id.etEmail2);
+        etBack=objectForgotPasswordFragment.findViewById(R.id.etBack);
         mAuth=FirebaseAuth.getInstance();
 
-        resetPassBtn.setOnClickListener(new View.OnClickListener() {
+        btnreset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 resetPassword();
             }
         });
 
-        RPtoLoginTxt.setOnClickListener(new View.OnClickListener() {
+        etBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 LogInFragment logInFragment=new LogInFragment();

@@ -1,5 +1,6 @@
 package com.example.signupsignin;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -8,59 +9,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link SignUpFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class SignUpFragment extends Fragment {
-
-    View objectSignUpFragment;
-    private Button signUpBtn;
-    private EditText mailEt,passEt,confirmPassEt;
-    private FirebaseAuth mAuth;
-    private TextView signUpToLogInTxt;
-
-
-    private void attachComponents(){
-        try{
-            signUpBtn=objectSignUpFragment.findViewById(R.id.btnSignUp);
-            mailEt=objectSignUpFragment.findViewById(R.id.etMailSignUp);
-            passEt=objectSignUpFragment.findViewById(R.id.etPassSignUp);
-            confirmPassEt=objectSignUpFragment.findViewById(R.id.etPassConfirmSignUp);
-            signUpToLogInTxt=objectSignUpFragment.findViewById(R.id.signUpToLogInTxt);
-
-            mAuth=FirebaseAuth.getInstance();
-
-            signUpBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    createUser();
-                }
-            });
-            signUpToLogInTxt.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    LogInFragment logInFragment=new LogInFragment();
-                    FragmentManager manager=getFragmentManager();
-                    manager.beginTransaction()
-                            .replace(R.id.frameLayoutMain,logInFragment,logInFragment.getTag())
-                            .commit();
-                }
-            });
-        }
-        catch(Exception e){
-            Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
-        }
-    }
+    private EditText etMailSignUp,etPassSignUp,etPassConfirmSignUp,signUpToLogInTxt;
+    private Button btnSignUp;
+    private FirebaseServices fbs;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -92,57 +55,6 @@ public class SignUpFragment extends Fragment {
         return fragment;
     }
 
-    public static boolean isEmailValid(String email) {
-        String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
-        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(email);
-        return matcher.matches();
-    }
-
-    public static boolean isPasswordValid(final String password) {
-
-        Pattern pattern;
-        Matcher matcher;
-        final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{4,}$";
-        pattern = Pattern.compile(PASSWORD_PATTERN);
-        matcher = pattern.matcher(password);
-        return matcher.matches();
-
-    }
-
-    public void createUser(){
-        try{
-            if(!mailEt.getText().toString().isEmpty()&&!passEt.getText().toString().isEmpty()&&!confirmPassEt.getText().toString().isEmpty()){
-                if(passEt.getText().toString().equals(confirmPassEt.getText().toString())){
-                    mAuth.createUserWithEmailAndPassword(mailEt.getText().toString(),passEt.getText().toString())
-                            .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                                @Override
-                                public void onSuccess(AuthResult authResult) {
-                                    Toast.makeText(getContext(), "Account created.", Toast.LENGTH_SHORT).show();
-                                    if(mAuth.getCurrentUser()!=null){
-                                        mAuth.signOut();
-                                    }
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(getContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                }
-                else{
-                    Toast.makeText(getContext(), "Passwords do not match.", Toast.LENGTH_SHORT).show();
-                }
-            }
-            else{
-                Toast.makeText(getContext(), "Missing fields identified.", Toast.LENGTH_SHORT).show();
-            }
-        }
-        catch (Exception e){
-            Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
-        }
-    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -153,18 +65,51 @@ public class SignUpFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        signUpBtn=getView().findViewById(R.id.btnSignUp);
-        mailEt=getView().findViewById(R.id.etMailSignUp);
-        passEt=getView().findViewById(R.id.etPassSignUp);
-        confirmPassEt=getView().findViewById(R.id.etPassConfirmSignUp);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_sign_up, container, false);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        objectSignUpFragment=inflater.inflate(R.layout.fragment_sign_up,container,false);
-        attachComponents();
-        return objectSignUpFragment;
+    public void onStart() {
+        super.onStart();
+        etMailSignUp = getView().findViewById(R.id.etMailSignUp);
+        fbs=FirebaseServices.getInstance();
+        etPassSignUp = getView().findViewById(R.id.etPassSignUp);
+        etPassConfirmSignUp = getView().findViewById(R.id.etPassConfirmSignUp);
+        btnSignUp = getView().findViewById(R.id.etEmailLogIn);
+        signUpToLogInTxt = getView().findViewById(R.id.signUpToLogInTxt);
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String eMail = etMailSignUp.getText().toString();
+                String password = etPassSignUp.getText().toString();
+                String ConfirmPassword = etPassConfirmSignUp.getText().toString();
+                if (eMail.trim().isEmpty() && password.trim().isEmpty()) {
+                    Toast.makeText(getActivity(), "some fields are empty!!!!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                fbs.getAuth().createUserWithEmailAndPassword(eMail,password).addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>()
+                {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task)
+                    {
+
+                    }
+                });;
+                signUpToLogInTxt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        LogInFragment LogInFragment =new LogInFragment();
+                        FragmentManager manager=getFragmentManager();
+                        manager.beginTransaction()
+                                .replace(R.id.frameLayoutMain,LogInFragment,LogInFragment.getTag())
+                                .commit();
+                    }
+                });
+
+
+            }
+        });
     }
 }
