@@ -20,13 +20,11 @@ import com.google.firebase.auth.FirebaseAuth;
  * create an instance of this fragment.
  */
 public class ForgotPasswordFragment extends Fragment {
-
     private View objectForgotPasswordFragment;
     private Button btnreset;
     private EditText etEmail2;
     private TextView etBack;
     private FirebaseAuth mAuth;
-
     private void resetPassword(){
         try{
             if(!etEmail2.getText().toString().isEmpty())
