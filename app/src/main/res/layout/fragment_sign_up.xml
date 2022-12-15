@@ -10,60 +10,65 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="298dp"
-        android:layout_height="96dp"
-        app:srcCompat="@drawable/brush4"
-        tools:layout_editor_absoluteX="56dp"
-        tools:layout_editor_absoluteY="464dp" />
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etBtnSignUp"
+        app:srcCompat="@drawable/brush4" />
 
     <EditText
         android:id="@+id/etMailSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="87dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="31dp"
         android:ems="10"
         android:hint="Email..."
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
-        tools:layout_editor_absoluteX="87dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintBottom_toTopOf="@+id/etPassSignUp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/etPassSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="29dp"
         android:ems="10"
         android:hint="Password.."
         android:inputType="numberPassword"
         android:minHeight="48dp"
-        tools:layout_editor_absoluteX="87dp"
-        tools:layout_editor_absoluteY="95dp" />
+        app:layout_constraintBottom_toTopOf="@+id/etPassConfirmSignUp"
+        app:layout_constraintStart_toStartOf="@+id/etMailSignUp"
+        app:layout_constraintTop_toBottomOf="@+id/etMailSignUp" />
 
     <EditText
         android:id="@+id/etPassConfirmSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="72dp"
         android:ems="10"
         android:hint="Confirm Password..."
         android:inputType="textPassword"
         android:minHeight="48dp"
-        tools:layout_editor_absoluteX="87dp"
-        tools:layout_editor_absoluteY="172dp" />
+        app:layout_constraintBottom_toTopOf="@+id/etBtnSignUp"
+        app:layout_constraintStart_toStartOf="@+id/etPassSignUp"
+        app:layout_constraintTop_toBottomOf="@+id/etPassSignUp" />
 
     <Button
-        android:id="@+id/etEmailLogIn"
+        android:id="@+id/etBtnSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="49dp"
         android:backgroundTint="#A68A8A"
         android:text="Sign Up"
-        tools:layout_editor_absoluteX="158dp"
-        tools:layout_editor_absoluteY="292dp" />
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etPassConfirmSignUp" />
 
-    <TextView
-        android:id="@+id/signUpToLogInTxt"
-        android:layout_width="190dp"
-        android:layout_height="25dp"
-        android:text="Have an account?"
-        android:textSize="20sp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="375dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

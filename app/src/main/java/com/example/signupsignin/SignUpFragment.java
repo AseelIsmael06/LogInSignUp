@@ -1,15 +1,15 @@
 package com.example.signupsignin;
-import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -21,7 +21,7 @@ import com.google.firebase.auth.AuthResult;
  * create an instance of this fragment.
  */
 public class SignUpFragment extends Fragment {
-    private EditText etMailSignUp,etPassSignUp,etPassConfirmSignUp,signUpToLogInTxt;
+    private EditText etMailSignUp,etPassSignUp,etPassConfirmSignUp;
     private Button btnSignUp;
     private FirebaseServices fbs;
     // TODO: Rename parameter arguments, choose names that match
@@ -77,8 +77,7 @@ public class SignUpFragment extends Fragment {
         fbs=FirebaseServices.getInstance();
         etPassSignUp = getView().findViewById(R.id.etPassSignUp);
         etPassConfirmSignUp = getView().findViewById(R.id.etPassConfirmSignUp);
-        btnSignUp = getView().findViewById(R.id.etEmailLogIn);
-        signUpToLogInTxt = getView().findViewById(R.id.signUpToLogInTxt);
+        btnSignUp = getView().findViewById(R.id.etBtnSignUp);
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -94,19 +93,8 @@ public class SignUpFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task)
                     {
-
                     }
                 });;
-                signUpToLogInTxt.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        LogInFragment LogInFragment =new LogInFragment();
-                        FragmentManager manager=getFragmentManager();
-                        manager.beginTransaction()
-                                .replace(R.id.frameLayoutMain,LogInFragment,LogInFragment.getTag())
-                                .commit();
-                    }
-                });
 
 
             }

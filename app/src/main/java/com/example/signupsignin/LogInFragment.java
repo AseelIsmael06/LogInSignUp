@@ -1,15 +1,16 @@
 package com.example.signupsignin;
-import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -21,7 +22,7 @@ import com.google.firebase.auth.AuthResult;
  * create an instance of this fragment.
  */
 public class LogInFragment extends Fragment {
-    private EditText etEmailLogIn,etPassLogIn,logInToRPTxt,txtSignUpLogIn;
+    private EditText etEmailLogIn,etPassLogIn,logInToRPTxt;
     private Button btnLogIn;
     private FirebaseServices fbs;
     // TODO: Rename parameter arguments, choose names that match
@@ -73,11 +74,10 @@ public class LogInFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        etEmailLogIn = getView().findViewById(R.id.etEmailLogIn);
+        etEmailLogIn = getView().findViewById(R.id.etBtnSignUp);
         fbs=FirebaseServices.getInstance();
         etPassLogIn = getView().findViewById(R.id.etPassLogIn);
         btnLogIn = getView().findViewById(R.id.btnLogIn);
-        txtSignUpLogIn = getView().findViewById(R.id.signUpToLogInTxt);
         btnLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,16 +92,6 @@ public class LogInFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task)
                     {
-                    }
-                });
-                txtSignUpLogIn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        SignUpFragment SignUpFragment =new SignUpFragment();
-                        FragmentManager manager=getFragmentManager();
-                        manager.beginTransaction()
-                                .replace(R.id.frameLayoutMain,SignUpFragment,SignUpFragment.getTag())
-                                .commit();
                     }
                 });
                 logInToRPTxt.setOnClickListener(new View.OnClickListener() {
